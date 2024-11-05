@@ -318,6 +318,7 @@ let clear=mix11.split(",")
 .slice(true)
 console.log(clear);
 
+
 // console.log(solution); // Elzero Web School
 
 
@@ -389,3 +390,8 @@ console.log(NUMS);
 let removeChars1 = ["E", "@", "@", "L", "Z", "@", "@", "E", "R", "@", "O"];
 let removedChars1 = removeChars1.filter((b) => (b!=="@")).reduce((f,e) => (`${f}${e}`));
 console.log(removedChars1);
+
+let mix22 ="1,2,3,EE,L,z,e,r,o,_,W,e,b,_,S,c,h,o,o,l,2,0,z";
+let Clear1 = mix22.split(",").filter(a => isNaN(parseInt(a))).map(function(c,d,e){e.length=e.length--;return c!="_"?c:" "}).reduce((a,b) => (a+b)).slice(true);
+// let Clear1 = mix22.split(",").filter(a => isNaN(parseInt(a))).map(function(c,d,e){e.length=e.length--;return c!="_"?c:" "}).join("").slice(true);
+console.log(Clear1);
