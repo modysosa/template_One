@@ -288,3 +288,41 @@ console.log(myLink.getAttribute("href"));
 
 myLink.setAttribute("href", "https://twitter.com");
 myLink.setAttribute("title", "Twitter");
+
+
+
+/*88
+https://elzero.org/javascript-2021-check-attributes-and-examples/#google_vignette
+  DOM [Check Attributes]
+  - Element.attributes
+  - Element.hasAttribute
+  - Element.hasAttributes
+  - Element.removeAttribute    // will remove the attripute 
+*/
+
+console.log(document.getElementsByTagName("p")[2].attributes);
+
+let myP = document.getElementsByTagName("p")[2];
+
+if (myP.hasAttribute("data-src")) {
+  if (myP.getAttribute("data-src") === "") {
+    myP.removeAttribute("data-src");
+  } else {
+    myP.setAttribute("data-src", "New Value");
+  }
+} else {
+  console.log(`Not Found`);
+}
+
+if (myP.hasAttributes()) {
+  console.log(`Has Attributes`);
+}
+
+if (document.getElementsByTagName("div")[2].hasAttributes()) {
+  console.log(`Has Attributes`);
+} else {
+  console.log(`Div Has No Attributes`);
+}
+
+
+
