@@ -6,8 +6,9 @@ https://www.youtube.com/watch?v=QsGN8B8g8QE&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDY
 */
 
 let lis = document.querySelectorAll("ul li");
-let exp = document.querySelector(".experiment");
-
+// let exp = document.querySelector(".experiment");
+let exp = document.getElementsByClassName("experiment")
+console.log(exp);
 if (window.localStorage.getItem("color")) {
   // If There Is Color In Local Storage
   // [1] Add Color To Div
