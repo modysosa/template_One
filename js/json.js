@@ -375,3 +375,304 @@ myRequest1.onreadystatechange = function () {
     }
   }
 };
+
+// let myDataL = new XMLHttpRequest();
+// myDataL.open("GET","../json/json1.json");
+// myDataL.send();
+// myDataL.onreadystatechange = function(){
+
+//   if(this.readyState === 4 && this.status ===200){
+//     console.log(this.responseText);
+//     console.log(this.readyState);
+//     console.log(this.status);
+//     let jsDataL = JSON.parse(this.responseText);
+//     for (let u = 0; u < jsDataL.length; u++) {
+//       let div = document.createElement("div");
+//       let named = document.createTextNode(jsDataL.widget[u])
+//       div.appendChild(named)
+//       document.body.appendChild(div);
+//     }
+//     console.log(jsDataL.widget.window.name)
+//   }
+// };
+
+// let connection = new XMLHttpRequest()
+// connection.open("GET", "../json/json1.json");
+// connection.send()
+// connection.onreadystatechange = function(){
+//   document.write(this.responseText)
+//   let jesonData = JSON.parse(this.responseText)
+//   document.write("<br/>")
+//   document.write(jesonData.widget.window.name)
+// }
+
+
+
+/*179
+https://elzero.org/javascript-2021-callback-hell-or-pyramid-of-doom/
+https://www.youtube.com/watch?v=vZjHCcZJMi4&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=179
+  To Understand Ajax, Fetch, Promises
+
+  Pyramid Of Doom || Callback Hell
+
+  - What Is Callback
+  - Callback Hell Example
+
+  What Is Callback
+  - A Function That Is Passed Into Another One As An Argument To Be Executed Later
+  - Function To Handle Photos
+  --- [1] Download Photo From URL
+  --- [2] Resize Photo
+  --- [3] Add Logo To The Photo
+  --- [4] Show The Photo In Website
+*/
+
+function makeItRed(e) {
+  e.target.style.color = "red";
+}
+
+let p = document.querySelector(".test");
+p.addEventListener("click", makeItRed);
+
+function iamACallback() {
+  console.log("Iam A Callback Function");
+}
+
+setTimeout(iamACallback, 2000);
+
+setTimeout(() => {
+  console.log("Download Photo From URL");
+  setTimeout(() => {
+    console.log("Resize Photo");
+    setTimeout(() => {
+      console.log("Add Logo To The Photo");
+      setTimeout(() => {
+        console.log("Show The Photo In Website");
+      }, 1000);
+    }, 1000);
+  }, 1000);
+}, 1000);
+
+
+/*180
+https://elzero.org/javascript-2021-promise-intro-and-syntax/
+https://www.youtube.com/watch?v=UXmqduAHxzY&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=180
+  Promise Intro And Syntax
+  - Promise In JavaScript Is Like Promise In Real Life
+  - Promise Is Something That Will Happen In The Future
+  - Promise Avoid Callback Hell
+  - Promise Is The Object That Represent The Status Of An Asynchronous Operation And Its Resulting Value
+
+  - Promise Status
+  --- Pending: Initial State
+  --- Fulfilled: Completed Successfully
+  --- Rejected: Failed
+
+  Story
+  - Once A Promise Has Been Called, It Will Start In A Pending State
+  - The Created Promise Will Eventually End In A Resolved State Or In A Rejected State
+  - Calling The Callback Functions (Passed To Then And Catch) Upon Finishing.
+
+  - Then
+  --- Takes 2 Optional Arguments [Callback For Success Or Failure]
+*/
+
+// const myPromise = new Promise((resolveFunction, rejectFunction) => {
+//   let connect = false;
+//   if (connect) {
+//     resolveFunction("Connection Established");
+//   } else {
+//     rejectFunction(Error("Connection Failed"));
+//   }
+// }).then(
+//   (resolveValue) => console.log(`Good ${resolveValue}`),
+//   (rejectValue) => console.log(`Bad ${rejectValue}`)
+// );
+
+const myPromise = new Promise((resolveFunction, rejectFunction) => {
+  let connect = true;
+  if (connect) {
+    resolveFunction("Connection Established");
+  } else {
+    rejectFunction(Error("Connection Failed"));
+  }
+});
+
+console.log(myPromise);
+
+let resolver = (resolveValue) => console.log(`Good ${resolveValue}`);
+let rejecter = (rejectValue) => console.log(`Bad ${rejectValue}`);
+
+myPromise.then(resolver, rejecter); ///////////////////////
+
+myPromise.then(
+  (resolveValue) => console.log(`Good ${resolveValue}`),
+  (rejectValue) => console.log(`Bad ${rejectValue}`)
+);
+
+myPromise.then(
+  (resolveValue) => console.log(`Good ${resolveValue}`),
+  (rejectValue) => console.log(`Bad ${rejectValue}`)
+);
+
+
+/*181
+https://www.youtube.com/watch?v=EOysmTtZzzc&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=182
+https://elzero.org/javascript-2021-promise-then-catch-and-finally/
+  Promise Training
+
+  We Will Go To The Meeting, Promise Me That We Will Find The 4 Employees
+  .then(We Will Choose Two People)
+  .then(We Will Test Them Then Get One Of Them)
+  .catch(No One Came)
+
+  Then    => Promise Is Successfull Use The Resolved Data
+  Catch   => Promise Is Failed, Catch The Error
+  Finally => Promise Successfull Or Failed Finally Do Something
+*/
+
+const myPromise1 = new Promise((resolveFunction, rejectFunction) => {
+  let employees = [];
+  if (employees.length === 4) {
+    resolveFunction(employees);
+  } else {
+    rejectFunction(Error("Number Of Employees Is Not 4"));
+  }
+});
+
+myPromise1
+  .then((resolveValue) => {
+    resolveValue.length = 2;
+    return resolveValue;
+  })
+  .then((resolveValue) => {
+    resolveValue.length = 1;
+    return resolveValue;
+  })
+  .then((resolveValue) => {
+    console.log(`The Choosen Emplyee Is ${resolveValue}`);
+  })
+  .catch((rejectedReason) => console.log(rejectedReason))
+  .finally(console.log("The Operation Is Done"));
+
+
+  /*182
+  https://elzero.org/javascript-2021-promise-and-xhr/
+  https://www.youtube.com/watch?v=QvzH9Y8dw2s&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=182
+  Promise And XHR
+*/
+
+const getData = (apiLink) => {
+  return new Promise((resolve, reject) => {
+    let myRequest2 = new XMLHttpRequest();
+    myRequest2.onload = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        resolve(JSON.parse(this.responseText));
+      } else {
+        reject(Error("No Data Found"));
+      }
+    };
+
+    myRequest2.open("GET", apiLink);
+    myRequest2.send();
+  });
+};
+
+getData("https://api.github.com/users/elzerowebschool/repos")
+  .then((result) => {
+    result.length = 10;
+    return result;
+  })
+  .then((result) => console.log(result[0].name))
+  .catch((rej) => console.log(rej));
+
+
+  /*183
+  https://elzero.org/javascript-2021-fetch-api/
+  https://www.youtube.com/watch?v=oO0a7tQcGps&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=183
+  Fetch API
+  - Return A Representation Of the Entire HTTP Response
+*/
+
+fetch("https://api.github.com/users/elzerowebschool/repos")
+.then((result) => {
+  console.log(result);
+  let myData3 = result.json();
+  console.log(myData3);
+  return myData3;
+})
+.then((full) => {
+  full.length = 10;
+  return full;
+})
+.then((ten) => {
+  console.log(ten[0].name);
+});
+
+// const getData = (apiLink) => {
+//   return new Promise((resolve, reject) => {
+//     let myRequest = new XMLHttpRequest();
+//     myRequest.onload = function () {
+//       if (this.readyState === 4 && this.status === 200) {
+//         resolve(JSON.parse(this.responseText));
+//       } else {
+//         reject(Error("No Data Found"));
+//       }
+//     };
+
+//     myRequest.open("GET", apiLink);
+//     myRequest.send();
+//   });
+// };
+
+// getData("https://api.github.com/users/elzerowebschool/repos")
+//   .then((result) => {
+//     result.length = 10;
+//     return result;
+//   })
+//   .then((result) => console.log(result[0].name))
+//   .catch((rej) => console.log(rej));
+
+
+
+/*184
+https://elzero.org/javascript-2021-promise-all-all-settled-race/
+https://www.youtube.com/watch?v=OipVzp0R7zs&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=184
+  Promise
+  - All
+  - All Settled
+  - Race
+*/
+
+const myFirstPromise = new Promise((res, rej) => {
+  setTimeout(() => {
+    res("Iam The First Promise");
+  }, 5000);
+});
+
+const mySecondPromise = new Promise((res, rej) => {
+  setTimeout(() => {
+    rej("Iam The Second Promise");
+  }, 1000);
+});
+
+const myThirdPromise = new Promise((res, rej) => {
+  setTimeout(() => {
+    res("Iam The Third Promise");
+  }, 2000);
+});
+
+// Promise.all([myFirstPromise, mySecondPromise, myThirdPromise]).then(
+//   (resolvedValues) => console.log(resolvedValues),
+//   (rejectedValue) => console.log(`Rejected: ${rejectedValue}`)
+// );
+
+Promise.allSettled([myFirstPromise, mySecondPromise, myThirdPromise]).then(
+  (resolvedValues) => console.log(resolvedValues),
+  (rejectedValue) => console.log(`Rejected: ${rejectedValue}`)
+);
+
+// Promise.race([myFirstPromise, mySecondPromise, myThirdPromise]).then(
+//   (resolvedValues) => console.log(resolvedValues),
+//   (rejectedValue) => console.log(`Rejected: ${rejectedValue}`)
+// );
