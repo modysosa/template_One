@@ -341,7 +341,7 @@ myRequest.onreadystatechange = function () {
   // console.log(myRequest.readyState);
   // console.log(myRequest.status);
   if (this.readyState === 4 && this.status === 200) {
-    console.log(this.responseText);
+    // console.log(this.responseText);
   }
 };
 
@@ -676,3 +676,139 @@ Promise.allSettled([myFirstPromise, mySecondPromise, myThirdPromise]).then(
 //   (resolvedValues) => console.log(resolvedValues),
 //   (rejectedValue) => console.log(`Rejected: ${rejectedValue}`)
 // );
+
+
+/*185
+https://elzero.org/javascript-2021-async-and-training/
+https://www.youtube.com/watch?v=PI2zuNkELTs&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=185
+
+  Async
+  - Async Before Function Mean This Function Return A Promise
+  - Async And Await Help In Creating Asynchronous Promise Behavior With Cleaner Style
+*/
+
+// function getData() {
+//   return new Promise((res, rej) => {
+//     let users = [];
+//     if (users.length > 0) {
+//       res("Users Found");
+//     } else {
+//       rej("No Users Found");
+//     }
+//   });
+// }
+
+// getData().then(
+//   (resolvedValue) => console.log(resolvedValue),
+//   (rejectedValue) => console.log("Rejected " + rejectedValue)
+// );
+
+// function getData() {
+//   let users = ["Osama"];
+//   if (users.length > 0) {
+//     return Promise.resolve("Users Found");
+//   } else {
+//     return Promise.reject("No Users Found");
+//   }
+// }
+
+// getData().then(
+//   (resolvedValue) => console.log(resolvedValue),
+//   (rejectedValue) => console.log("Rejected " + rejectedValue)
+// );
+
+async function getData1() {
+  let users = ["Mody"];
+  if (users.length > 0) {
+    return "Users Found";
+  } else {
+    throw new Error("No Users Found");
+  }
+}
+
+console.log(getData1());
+
+getData1().then(
+  (resolvedValue) => console.log(resolvedValue),
+  (rejectedValue) => console.log("Rejected " + rejectedValue)
+);
+
+
+
+/*186
+https://elzero.org/javascript-2021-await-and-training/
+https://www.youtube.com/watch?v=5iLxtN4POts&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=186
+  Await
+  - Await Works Only Inside Asnyc Functions
+  - Await Make JavaScript Wait For The Promise Result
+  - Await Is More Elegant Syntax Of Getting Promise Result
+*/
+
+const myPromise2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    // resolve("Iam The Good Promise");
+    reject(Error("Iam The Bad Promise"));
+  }, 3000);
+}); 
+
+async function readData() {
+  console.log("Before Promise");
+  // myPromise.then((resolvedValue) => console.log(resolvedValue));
+  // console.log(await myPromise);
+  console.log(await myPromise2.catch((err) => err));
+  console.log("After Promise");
+}
+
+readData();
+
+
+
+/*187
+https://elzero.org/javascript-2021-try-catch-finally-with-fetch/
+https://www.youtube.com/watch?v=nb3Hh-gAbM4&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=187
+  Async & Await With Try, Catch, Finally
+*/
+
+const myPromise3 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Iam The Good Promise");
+  }, 3000);
+});
+
+// async function readData() {
+//   console.log("Before Promise");
+//   try {
+//     console.log(await myPromise);
+//   } catch (reason ) {
+//     console.log(`Reason: ${reason}`);
+//   } finally { 
+//     console.log("After Promise");
+//   }
+// }
+
+// readData();
+
+// "https://api.github.com/users/elzerowebschool/repos"
+
+async function fetchData() {
+  console.log("Before Fetch");
+  try {
+    let myData6 = await fetch("https://api.github.com/users/elzerowebschool/repos");
+    console.log(await myData6.json());
+  } catch (reason) {
+    console.log(`Reason: ${reason}`);
+  } finally {
+    console.log("After Fetch");
+  }
+}
+
+fetchData();
+
+
+/*
+  The End
+  - Other Information => Practice + Tutorials
+  - Problem Solving
+  - Search In Lessons
+  - Advanced Books
+*/
