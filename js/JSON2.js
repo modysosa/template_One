@@ -1,4 +1,4 @@
-{
+const myObject = {
 
     "window": {
       "title": "Sample Konfabulator Widget",
@@ -39,3 +39,7 @@
       "null": null
     }
   }
+
+
+  console.log(myObject.image.name)
+  console.log(myObject["image"] ["name"])

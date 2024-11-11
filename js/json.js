@@ -125,7 +125,6 @@ console.log(objfromserver);
 // }
 // fetchDataZ()
 
-
 // const fs = require('fs').promises; // Use promises for async/await
 
 // async function modifyJson() {
@@ -146,8 +145,6 @@ console.log(objfromserver);
 // }
 
 // modifyJson();
-
-
 
 /*173
 https://elzero.org/javascript-2021-asynchronous-vs-synchronous-programming/
@@ -254,7 +251,6 @@ console.log("One");
 console.log("Two");
 console.log("Three");
 
-
 /*175
 https://elzero.org/event-loop-and-callback-queue/
 https://www.youtube.com/watch?v=e-oSGQz7eT8&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=175
@@ -315,7 +311,6 @@ https://www.youtube.com/watch?v=X-RkZHyzidc&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDY
 let req = new XMLHttpRequest();
 console.log(req);
 
-
 /*177
 https://elzero.org/javascript-2021-request-and-response-from-real-api/
 https://www.youtube.com/watch?v=-RmWQYMGeIs&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=177
@@ -344,8 +339,6 @@ myRequest.onreadystatechange = function () {
     // console.log(this.responseText);
   }
 };
-
-
 
 /*178
 https://elzero.org/javascript-2021-loop-on-data/
@@ -406,8 +399,6 @@ myRequest1.onreadystatechange = function () {
 //   document.write(jesonData.widget.window.name)
 // }
 
-
-
 /*179
 https://elzero.org/javascript-2021-callback-hell-or-pyramid-of-doom/
 https://www.youtube.com/watch?v=vZjHCcZJMi4&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=179
@@ -452,7 +443,6 @@ setTimeout(() => {
     }, 1000);
   }, 1000);
 }, 1000);
-
 
 /*180
 https://elzero.org/javascript-2021-promise-intro-and-syntax/
@@ -515,7 +505,6 @@ myPromise.then(
   (rejectValue) => console.log(`Bad ${rejectValue}`)
 );
 
-
 /*181
 https://www.youtube.com/watch?v=EOysmTtZzzc&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=182
 https://elzero.org/javascript-2021-promise-then-catch-and-finally/
@@ -555,8 +544,7 @@ myPromise1
   .catch((rejectedReason) => console.log(rejectedReason))
   .finally(console.log("The Operation Is Done"));
 
-
-  /*182
+/*182
   https://elzero.org/javascript-2021-promise-and-xhr/
   https://www.youtube.com/watch?v=QvzH9Y8dw2s&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=182
   Promise And XHR
@@ -586,8 +574,7 @@ getData("https://api.github.com/users/elzerowebschool/repos")
   .then((result) => console.log(result[0].name))
   .catch((rej) => console.log(rej));
 
-
-  /*183
+/*183
   https://elzero.org/javascript-2021-fetch-api/
   https://www.youtube.com/watch?v=oO0a7tQcGps&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=183
   Fetch API
@@ -595,19 +582,19 @@ getData("https://api.github.com/users/elzerowebschool/repos")
 */
 
 fetch("https://api.github.com/users/elzerowebschool/repos")
-.then((result) => {
-  console.log(result);
-  let myData3 = result.json();
-  console.log(myData3);
-  return myData3;
-})
-.then((full) => {
-  full.length = 10;
-  return full;
-})
-.then((ten) => {
-  console.log(ten[0].name);
-});
+  .then((result) => {
+    console.log(result);
+    let myData3 = result.json();
+    console.log(myData3);
+    return myData3;
+  })
+  .then((full) => {
+    full.length = 10;
+    return full;
+  })
+  .then((ten) => {
+    console.log(ten[0].name);
+  });
 
 // const getData = (apiLink) => {
 //   return new Promise((resolve, reject) => {
@@ -632,8 +619,6 @@ fetch("https://api.github.com/users/elzerowebschool/repos")
 //   })
 //   .then((result) => console.log(result[0].name))
 //   .catch((rej) => console.log(rej));
-
-
 
 /*184
 https://elzero.org/javascript-2021-promise-all-all-settled-race/
@@ -676,7 +661,6 @@ Promise.allSettled([myFirstPromise, mySecondPromise, myThirdPromise]).then(
 //   (resolvedValues) => console.log(resolvedValues),
 //   (rejectedValue) => console.log(`Rejected: ${rejectedValue}`)
 // );
-
 
 /*185
 https://elzero.org/javascript-2021-async-and-training/
@@ -733,8 +717,6 @@ getData1().then(
   (rejectedValue) => console.log("Rejected " + rejectedValue)
 );
 
-
-
 /*186
 https://elzero.org/javascript-2021-await-and-training/
 https://www.youtube.com/watch?v=5iLxtN4POts&list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv&index=186
@@ -749,7 +731,7 @@ const myPromise2 = new Promise((resolve, reject) => {
     // resolve("Iam The Good Promise");
     reject(Error("Iam The Bad Promise"));
   }, 3000);
-}); 
+});
 
 async function readData() {
   console.log("Before Promise");
@@ -760,8 +742,6 @@ async function readData() {
 }
 
 readData();
-
-
 
 /*187
 https://elzero.org/javascript-2021-try-catch-finally-with-fetch/
@@ -781,7 +761,7 @@ const myPromise3 = new Promise((resolve, reject) => {
 //     console.log(await myPromise);
 //   } catch (reason ) {
 //     console.log(`Reason: ${reason}`);
-//   } finally { 
+//   } finally {
 //     console.log("After Promise");
 //   }
 // }
@@ -793,7 +773,9 @@ const myPromise3 = new Promise((resolve, reject) => {
 async function fetchData() {
   console.log("Before Fetch");
   try {
-    let myData6 = await fetch("https://api.github.com/users/elzerowebschool/repos");
+    let myData6 = await fetch(
+      "https://api.github.com/users/elzerowebschool/repos"
+    );
     console.log(await myData6.json());
   } catch (reason) {
     console.log(`Reason: ${reason}`);
@@ -803,7 +785,6 @@ async function fetchData() {
 }
 
 fetchData();
-
 
 /*
   The End
